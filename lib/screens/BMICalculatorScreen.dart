@@ -1,4 +1,3 @@
-import 'package:bmicalculator/screens/BMICalculatorResultScreen.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,9 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-import '../utils/app_colors.dart';
+import '../screens/BMICalculatorResultScreen.dart';
 import '../widgets/IconWithLabel.dart';
 import '../widgets/ReusableCard.dart';
+import '../utils/app_colors.dart';
+import '../main.dart';
 
 enum GenderSelection { Male, Female }
 
@@ -20,7 +21,6 @@ class BMICalculationScreen extends StatefulWidget {
 }
 
 class _BMICalculationScreenState extends State<BMICalculationScreen> {
-
   final activeColor = Colors.lightBlueAccent;
   late GenderSelection gender = GenderSelection.Male;
 
@@ -40,6 +40,7 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
     super.initState();
     date = DateTime.now();
     _date = DateFormat('yyyy-MM-dd').format(date);
+    initialization();
   }
 
   @override
@@ -124,7 +125,7 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                              'DATE',
+                            'DATE',
                             style: TextStyle(
                               fontSize: 18,
                             ),
@@ -136,7 +137,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: AppColors.numberPicker),
+                                  border:
+                                      Border.all(color: AppColors.numberPicker),
                                 ),
                                 child: Text(
                                   _date.toString(),
@@ -146,7 +148,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                                   ),
                                 ),
                               ),
-                              onTap: () => pickDate(),
+                              onTap: () {},
+                              //onTap: () => pickDate(),
                             ),
                           ),
                         ],
@@ -167,7 +170,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                             padding: const EdgeInsets.only(top: 10.0),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton2<String>(
-                                style: const TextStyle(color: AppColors.numberPicker),
+                                style: const TextStyle(
+                                    color: AppColors.numberPicker),
                                 isExpanded: true,
                                 hint: Text(
                                   'Select Item',
@@ -177,16 +181,17 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                                   ),
                                 ),
                                 items: units
-                                    .map((String item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      // color: AppColors.numberPicker,
-                                    ),
-                                  ),
-                                ))
+                                    .map((String item) =>
+                                        DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                              // color: AppColors.numberPicker,
+                                            ),
+                                          ),
+                                        ))
                                     .toList(),
                                 value: selectedUnit,
                                 onChanged: (String? value) {
@@ -195,7 +200,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                                   });
                                 },
                                 buttonStyleData: ButtonStyleData(
-                                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
                                   height: 50,
                                   width: 140,
                                   decoration: BoxDecoration(
@@ -233,7 +239,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                             ),
                           ),
                           const Padding(
-                            padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
+                            padding: EdgeInsets.only(
+                                left: 10.0, right: 10.0, top: 5.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -253,7 +260,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                             minValue: 0,
                             maxValue: 250,
                             decimalPlaces: 1,
-                            onChanged: (value) => setState(() => _height = value),
+                            onChanged: (value) =>
+                                setState(() => _height = value),
                             selectedTextStyle: const TextStyle(
                               fontSize: 20,
                               color: AppColors.numberPicker,
@@ -318,7 +326,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                             ),
                           ),
                           const Padding(
-                            padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
+                            padding: EdgeInsets.only(
+                                left: 10.0, right: 10.0, top: 5.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -338,7 +347,8 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                             minValue: 0,
                             maxValue: 250,
                             decimalPlaces: 1,
-                            onChanged: (value) => setState(() => _weight = value),
+                            onChanged: (value) =>
+                                setState(() => _weight = value),
                             selectedTextStyle: const TextStyle(
                               fontSize: 20,
                               color: AppColors.numberPicker,
@@ -362,12 +372,14 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 2.0, top: 2.5),
+                      padding: const EdgeInsets.only(
+                          left: 5.0, right: 5.0, bottom: 2.0, top: 2.5),
                       child: SizedBox(
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context,
+                            Navigator.push(
+                              context,
                               MaterialPageRoute(
                                 builder: (context) => BMICalculatorResultScreen(
                                   height: _height,
@@ -380,7 +392,10 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
                             // backgroundColor: AppColors.numberPicker,
                             backgroundColor: Colors.blue,
                           ),
-                          child: const Text('Calculate BMI', style: TextStyle(fontSize: 18),),
+                          child: const Text(
+                            'Calculate BMI',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ),
                     ),
@@ -409,29 +424,24 @@ class _BMICalculationScreenState extends State<BMICalculationScreen> {
   }
 
   //double tap to exit
-  DateTime current = DateTime.now().subtract(const Duration(milliseconds: 1500));
+  DateTime current =
+      DateTime.now().subtract(const Duration(milliseconds: 1500));
   Future<bool> popped() {
     DateTime now = DateTime.now();
-      if (now.difference(current) > const Duration(milliseconds: 1500)){
-        current = now;
-        Fluttertoast.showToast(
-            msg: "Press Again to Exit!",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.black,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
-        return Future.value(false);
-      } else{
-        Fluttertoast.cancel();
-        return Future.value(true);
-      }
+    if (now.difference(current) > const Duration(milliseconds: 1500)) {
+      current = now;
+      Fluttertoast.showToast(
+          msg: "Press Again to Exit!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      return Future.value(false);
+    } else {
+      Fluttertoast.cancel();
+      return Future.value(true);
+    }
   }
-
 }
-
-
-
-

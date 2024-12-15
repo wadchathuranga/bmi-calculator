@@ -1,8 +1,17 @@
-import 'package:bmicalculator/screens/BMICalculatorScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
+import '../screens/BMICalculatorScreen.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
+}
+
+void initialization() async {
+  // await Future.delayed(const Duration(seconds: 1)); // change delay duration
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'BMI Calculator',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: const Color(0xff0a0321),
         textTheme: const TextTheme(bodySmall: TextStyle(color: Colors.white)),
