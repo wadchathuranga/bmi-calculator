@@ -40,16 +40,11 @@ dependencies:
   numberpicker: ^2.1.2
   flutter_material_pickers: ^3.6.0
   dropdown_button2: ^2.3.8
-  # DATE FORMATTING
-  intl: ^0.18.0
-  #TOAST MESSAGE
-  fluttertoast: ^8.2.1
-  # NATIVE SPLASH SCREEN
-  flutter_native_splash: ^2.3.2
-  #SQLITE DATABASE
-#  sqflite: ^2.3.0
-  # PAGE TRANSITION
-#  page_transition: ^2.0.9
+  intl: ^0.18.0 # DATE FORMATTING
+  fluttertoast: ^8.2.1 #TOAST MESSAGE
+  flutter_native_splash: ^2.3.2 # NATIVE SPLASH SCREEN
+#  sqflite: ^2.3.0 #SQLITE DATABASE
+#  page_transition: ^2.0.9 # PAGE TRANSITION
 
 flutter_native_splash:
   color: "#1d1e33"
