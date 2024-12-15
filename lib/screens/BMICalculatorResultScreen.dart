@@ -257,7 +257,10 @@ class _BMICalculatorResultScreenState extends State<BMICalculatorResultScreen> {
                                       ),
                                     ),
                                     Text(
-                                      BMI.toStringAsFixed(3),
+                                      BMI.toString().substring(
+                                          0,
+                                          (BMI.toString().indexOf('.') + 2)
+                                              .clamp(0, BMI.toString().length)),
                                       style: const TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
